@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chat Room</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+var socket = io.connect('/');
+socket.on('from server', function (data) {
+    console.log(data);
+    if (data.message) {
+        //document.write(data.message);
+        $("#messages").append("<div>" + data.message + "</div>");
+    }
+    if (data.online) {
+        console.info("online:", data.online);
+        $("#onlinecount").html(data.online + " online");
+    }
+});
+
+$(function(){
+    $("#ui button").on("click", function(e){
+        var message = $("#textinput").val();
+        socket.emit('from client', { message: message });
+        $("#textinput").val("").focus();
+        $("#messages").append("<div class='ownmessage'>" + message + "</div>");
+        e.preventDefault();
+    });
+    $("#textinput").focus();
+});
+</script>
+
+<style>
+    form {display:inline-block;}
+    body {font-family:sans-serif;}
+
+    #onlinecount {font-size:small; color:#999;}
+    #messages {color:#444; font-size:11px;}
+    #messages .ownmessage {font-weight:bold;}
+</style>
+
+</head>
+
+<body>
+    <div id="ui">
+        <form>
+            <input id="textinput" placeholder="chat box" />
+            <button>send</button>
+        </form>
+        <span id="onlinecount">1 online</span>
+    </div>
+    <div id="messages"></div>
+
+</body>
+</html>

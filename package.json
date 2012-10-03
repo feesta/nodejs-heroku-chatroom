@@ -1,0 +1,14 @@
+{
+    "name": "feesta-chatroom",
+    "description": "Basic NodeJS/Socket.IO chatroom",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "3.x",
+        "socket.io": "0.9.x"
+    },
+    "engines": {
+        "node": "0.8.x",
+        "npm": "1.1.x"
+    }
+}

@@ -2,4 +2,4 @@ Requires NodeJS, npm, and Heroku Toolbelt (https://devcenter.heroku.com/articles
 
 Run ```npm install``` to add modules.
 
-Sample install: http://enigmatic-falls-5899.herokuapp.com/
+Example chatroom: http://enigmatic-falls-5899.herokuapp.com/
